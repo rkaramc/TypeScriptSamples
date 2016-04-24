@@ -200,19 +200,22 @@ class TodoView extends Backbone.View {
     // A TodoView model must be a Todo, redeclare with specific type
     model: Todo;
     input: JQuery;
+    
+    //... is a list tag.
+    get tagName() { return "li" };
 
-    constructor (options? ) {
-        //... is a list tag.
-        this.tagName = "li";
-
-        // The DOM events specific to an item.
-        this.events = {
+    // The DOM events specific to an item.
+    get events() { 
+        return {
             "click .check": "toggleDone",
             "dblclick label.todo-content": "edit",
             "click span.todo-destroy": "clear",
             "keypress .todo-input": "updateOnEnter",
             "blur .todo-input": "close"
-        };
+        }
+    };
+
+    constructor (options? ) {
 
         super(options);
 
